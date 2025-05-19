@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'idea'
 }
 
 group = 'cydeo'
@@ -18,17 +17,11 @@ dependencies {
     //Cucumber
     testImplementation 'io.cucumber:cucumber-java:7.22.1'
     testImplementation 'io.cucumber:cucumber-junit:7.22.1'
-    // (Optional) AssertJ for nicer assertions
+    //(Optional) AssertJ for nicer assertions
     testImplementation 'org.assertj:assertj-core:3.25.3'
     //JUnit
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
 }
 
 test {

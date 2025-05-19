@@ -10,7 +10,7 @@ public class Google_StepDefinitions {
     @When("user is on the Google search page")
     public void user_is_on_google_search_page() {
         Driver.getDriver().get("https://google.com/");
-        System.out.println("Getting on the page.");
+        System.out.println("User is on the page.");
     }
 
     @Then("user should see the title is google")

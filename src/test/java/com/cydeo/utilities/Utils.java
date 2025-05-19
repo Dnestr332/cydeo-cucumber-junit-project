@@ -47,4 +47,7 @@ public class Utils {
     public static void titleContains(String title){
         Assert.assertTrue(Driver.getDriver().getTitle().contains(title));
     }
+    public static void textContains(WebElement element, String text){
+        Assert.assertTrue(element.getText().contains(text));
+    }
 }
