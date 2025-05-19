@@ -21,4 +21,7 @@ public class CydeoLibrary {
 
     @FindBy(xpath = "//span[contains(text(), 'Test')]")
     public WebElement userAvatar;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    public WebElement errorMessage;
 }

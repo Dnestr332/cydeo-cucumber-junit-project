@@ -1,5 +1,6 @@
 Feature: Login page functionality
-  Agile story: As a user I should ne able to login with correct credentials
+
+  Agile story: As a user I should be able to login with correct credentials
   to different accounts. And dashboard should be displayed.
 
   Scenario: Login page works as expected for student
@@ -12,7 +13,7 @@ Feature: Login page functionality
     When librarian enters valid credentials
     Then user is able to see the librarian dashboard
 
-  Scenario: Login page works as expected for admin
+  Scenario: Login page doesn't work as expected for admin
     Given admin is on the login page
-    When admin enters valid credentials
-    Then user is able to see the student admin
+    When admin enters invalid credentials
+    Then user is unable to see the admin dashboard
