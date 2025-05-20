@@ -1,8 +1,6 @@
 package com.cydeo.utilities;
 
-import io.opentelemetry.api.trace.StatusCode;
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
+import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Utils {
+    private static final SoftAssertions SOFTLY = new SoftAssertions();
+    private static final WebDriverWait WAIT = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
 
     //Explicit and Hard waits:
     public static void sleep(int sec){
@@ -19,16 +19,14 @@ public class Utils {
             System.out.println(e.getMessage());
         }
     }
-    public static void waitTitle(String title){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.titleIs(title));
+    public static void waitTitle(String partialTitle){
+        WAIT.until(ExpectedConditions.titleContains(partialTitle));
     }
     public static void waitVisible(WebElement target){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(target));
+        WAIT.until(ExpectedConditions.visibilityOf(target));
     }
 
-    //Window handles
+    //Window handles:
     public static void switchWindowAndVerify(String url, String title){
         for(String handle : Driver.getDriver().getWindowHandles()){
             Driver.getDriver().switchTo().window(handle);
@@ -37,17 +35,26 @@ public class Utils {
                 break;
             }
         }
-        Assert.assertTrue(Driver.getDriver().getTitle().contains(title) );
+        titleContains(title);
     }
 
-    //Verifications/Assertions
-    public static void verifyTitle(String title){
-        Assert.assertEquals(Driver.getDriver().getTitle(), title);
+    //Verifications/Assertions:
+    public static void verifyTitle(String expectedTitle) {
+        SOFTLY.assertThat(Driver.getDriver().getTitle())
+                .as("Verify page title")
+                .isEqualTo(expectedTitle);
     }
-    public static void titleContains(String title){
-        Assert.assertTrue(Driver.getDriver().getTitle().contains(title));
+    public static void titleContains(String expectedTitle){
+        SOFTLY.assertThat(Driver.getDriver().getTitle())
+                .as("Check if title contains: %s", expectedTitle)
+                .contains(expectedTitle);
     }
-    public static void textContains(WebElement element, String text){
-        Assert.assertTrue(element.getText().contains(text));
+    public static void textContains(WebElement target, String expectedText){
+        SOFTLY.assertThat(target.getText())
+                .as("Check if element text contains: %s")
+                .contains(expectedText);
+    }
+    public static void assertAll(){
+        SOFTLY.assertAll();
     }
 }

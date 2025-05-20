@@ -1,0 +1,36 @@
+package com.cydeo.step_definitions;
+
+import com.cydeo.pages.BingSearch;
+import com.cydeo.utilities.ConfigReader;
+import com.cydeo.utilities.Driver;
+import com.cydeo.utilities.Utils;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.openqa.selenium.Keys;
+
+public class BingSearchDefs {
+    private final BingSearch bingPage = new BingSearch();
+    private String expectedTitle;
+
+    @Given("user is on the Bing search page")
+    public void userIsOnTheBingSearchPage() {
+        Driver.getDriver().get("https://www.bing.com/");
+        expectedTitle = "Search - Microsoft Bing";
+        Utils.waitTitle(expectedTitle);
+        Utils.verifyTitle(expectedTitle);
+        Utils.assertAll();
+    }
+    @When("user enters valid text into Bing search field")
+    public void userEntersValidTextIntoBingSearchField() {
+        bingPage.searchField
+                .sendKeys(ConfigReader.getProperty("bing_Item") + Keys.ENTER);
+    }
+    @Then("user is able to see the Bing search result page")
+    public void userIsAbleToSeeTheBingSearchResultPage() {
+        expectedTitle = ConfigReader.getProperty("bing_Item") + " - Search";
+        Utils.waitTitle(ConfigReader.getProperty("bing_Item"));
+        Utils.verifyTitle(expectedTitle);
+        Utils.assertAll();
+    }
+}

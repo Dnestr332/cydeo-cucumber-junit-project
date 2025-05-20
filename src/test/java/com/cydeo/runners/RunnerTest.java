@@ -11,8 +11,9 @@ import java.util.Locale;
         plugin = {"pretty", "html:target/cucumber-reports.html"},
         features = "src/test/resources/features",
         glue = "com.cydeo.step_definitions",
-        tags = "@LoginTest",
-        dryRun = false
+        tags = "@GoogleTest",
+        dryRun = false,
+        publish = false
 )
 public class RunnerTest {
 }
