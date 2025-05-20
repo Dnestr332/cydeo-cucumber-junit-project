@@ -1,7 +1,6 @@
 package com.cydeo.step_definitions;
 
 import com.cydeo.pages.BingSearch;
-import com.cydeo.utilities.ConfigReader;
 import com.cydeo.utilities.Driver;
 import com.cydeo.utilities.Utils;
 import io.cucumber.java.en.Given;
@@ -20,15 +19,17 @@ public class BingSearchDefs {
         Utils.waitTitle(expectedTitle);
         Utils.verifyTitle(expectedTitle);
     }
-    @When("user enters valid text into Bing search field")
-    public void userEntersValidTextIntoBingSearchField() {
+
+    @When("user enters {string} into Bing search field")
+    public void userEntersIntoBingSearchField(String arg0) {
         bingPage.searchField
-                .sendKeys(ConfigReader.getProperty("bing_Item") + Keys.ENTER);
+                .sendKeys(arg0 + Keys.ENTER);
     }
-    @Then("user is able to see the Bing search result page")
-    public void userIsAbleToSeeTheBingSearchResultPage() {
-        expectedTitle = ConfigReader.getProperty("bing_Item") + " - Search";
-        Utils.waitTitle(ConfigReader.getProperty("bing_Item"));
+
+    @Then("user is able to see the Bing {string} search result page")
+    public void userIsAbleToSeeTheBingSearchResultPage(String arg0) {
+        expectedTitle = arg0 + " - Search";
+        Utils.waitTitle(arg0);
         Utils.verifyTitle(expectedTitle);
     }
 }

@@ -6,5 +6,5 @@ Feature: Bing search page functionality
 
   Scenario: Bing search page works as expected
     Given user is on the Bing search page
-    When user enters valid text into Bing search field
-    Then user is able to see the Bing search result page
+    When user enters "orange" into Bing search field
+    Then user is able to see the Bing "orange" search result page
