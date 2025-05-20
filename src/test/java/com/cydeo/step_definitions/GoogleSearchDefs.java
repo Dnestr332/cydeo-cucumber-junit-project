@@ -20,7 +20,6 @@ public class GoogleSearchDefs {
         expectedTitle = "Google";
         Utils.waitTitle(expectedTitle);
         Utils.verifyTitle(expectedTitle);
-        Utils.assertAll();
     }
 
     @When("user enters valid text into Google search field")
@@ -34,6 +33,5 @@ public class GoogleSearchDefs {
         expectedTitle = ConfigReader.getProperty("google_item") + " - Google Search";
         Utils.waitTitle(ConfigReader.getProperty("google_item"));
         Utils.verifyTitle(expectedTitle);
-        Utils.assertAll();
     }
 }

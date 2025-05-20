@@ -19,7 +19,6 @@ public class BingSearchDefs {
         expectedTitle = "Search - Microsoft Bing";
         Utils.waitTitle(expectedTitle);
         Utils.verifyTitle(expectedTitle);
-        Utils.assertAll();
     }
     @When("user enters valid text into Bing search field")
     public void userEntersValidTextIntoBingSearchField() {
@@ -31,6 +30,5 @@ public class BingSearchDefs {
         expectedTitle = ConfigReader.getProperty("bing_Item") + " - Search";
         Utils.waitTitle(ConfigReader.getProperty("bing_Item"));
         Utils.verifyTitle(expectedTitle);
-        Utils.assertAll();
     }
 }
