@@ -57,4 +57,9 @@ public class Utils {
     public static void assertAll(){
         SOFTLY.assertAll();
     }
+    public static void isDisplayed(WebElement target){
+        SOFTLY.assertThat(target.isDisplayed())
+                .as("Check if the element is displayed: %s")
+                .isTrue();
+    }
 }

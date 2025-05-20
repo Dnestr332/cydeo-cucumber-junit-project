@@ -8,7 +8,6 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 
 public class LoginStepDefs {
     private String email;
@@ -25,13 +24,13 @@ public class LoginStepDefs {
     public void tearDown(){
         Driver.closeDriver();
     }
-
-    @Given("student is on the login page")
-    public void studentIsOnTheLoginPage() {
+    //Background
+    @Given("user is on the login page")
+    public void userIsOnTheLoginPage() {
         Driver.getDriver().get("https://library2.cydeo.com/login.html");
         Utils.verifyTitle("Login - Library");
     }
-
+    //Student Scenario
     @When("student enters valid credentials")
     public void studentEntersValidCredentials() {
         email = "student21@library";
@@ -39,19 +38,13 @@ public class LoginStepDefs {
         library.passField.sendKeys(password);
         library.signInButton.click();
     }
-
     @Then("user is able to see the student dashboard")
     public void userIsAbleToSeeTheStudentSDashboard() {
         keyWord = "Student";
         Utils.textContains(library.userAvatar, keyWord);
+        Utils.assertAll();
     }
-
-    @Given("librarian is on the login page")
-    public void librarianIsOnTheLoginPage() {
-        Driver.getDriver().get("https://library2.cydeo.com/login.html");
-        Utils.verifyTitle("Login - Library");
-    }
-
+    //Librarian Scenario
     @When("librarian enters valid credentials")
     public void librarianEntersValidCredentials() {
         email = "librarian21@library";
@@ -59,19 +52,13 @@ public class LoginStepDefs {
         library.passField.sendKeys(password);
         library.signInButton.click();
     }
-
     @Then("user is able to see the librarian dashboard")
     public void userIsAbleToSeeTheLibrarianSDashboard() {
         keyWord = "Librarian";
         Utils.textContains(library.userAvatar, keyWord);
+        Utils.assertAll();
     }
-
-    @Given("admin is on the login page")
-    public void adminIsOnTheLoginPage() {
-        Driver.getDriver().get("https://library2.cydeo.com/login.html");
-        Utils.verifyTitle("Login - Library");
-    }
-
+    //Admin Scenario
     @When("admin enters invalid credentials")
     public void adminEntersValidCredentials() {
         email = "admin@library";
@@ -79,10 +66,10 @@ public class LoginStepDefs {
         library.passField.sendKeys(password);
         library.signInButton.click();
     }
-
     @Then("user is unable to see the admin dashboard")
     public void userIsAbleToSeeTheStudentSAdmin() {
         Utils.waitVisible(library.errorMessage);
-        Assert.assertTrue(library.errorMessage.isDisplayed());
+        Utils.isDisplayed(library.errorMessage);
+        Utils.assertAll();
     }
 }
