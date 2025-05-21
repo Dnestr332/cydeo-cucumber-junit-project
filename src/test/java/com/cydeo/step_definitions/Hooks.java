@@ -5,9 +5,9 @@ import com.cydeo.utilities.Utils;
 import io.cucumber.java.After;
 
 public class Hooks {
-    @After
-    public void tearDown(){
-        Utils.assertAll();
-        Driver.closeDriver();
-    }
+//    @After
+//    public void tearDown(){
+//        Utils.assertAll();
+//        Driver.closeDriver();
+//    }
 }

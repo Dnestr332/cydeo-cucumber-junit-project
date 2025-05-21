@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.zip.CheckedInputStream;
 
 public class Utils {
     private static final SoftAssertions SOFTLY = new SoftAssertions();
@@ -60,6 +61,11 @@ public class Utils {
     public static void isDisplayed(WebElement target){
         SOFTLY.assertThat(target.isDisplayed())
                 .as("Check if the element is displayed: %s")
+                .isTrue();
+    }
+    public static void isTrue(Boolean condition){
+        SOFTLY.assertThat(condition)
+                .as("Check if condition is true: ")
                 .isTrue();
     }
 }
