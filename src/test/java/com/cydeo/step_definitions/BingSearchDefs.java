@@ -12,10 +12,9 @@ public class BingSearchDefs {
     private final BingSearch bingPage = new BingSearch();
     private String expectedTitle;
 
-    @Given("user is on the Bing search page")
-    public void userIsOnTheBingSearchPage() {
+    @Given("user is on the {string} page")
+    public void userIsOnThePage(String expectedTitle) {
         Driver.getDriver().get("https://www.bing.com/");
-        expectedTitle = "Search - Microsoft Bing";
         Utils.waitTitle(expectedTitle);
         Utils.verifyTitle(expectedTitle);
     }
@@ -26,10 +25,9 @@ public class BingSearchDefs {
                 .sendKeys(arg0 + Keys.ENTER);
     }
 
-    @Then("user is able to see the Bing {string} search result page")
-    public void userIsAbleToSeeTheBingSearchResultPage(String arg0) {
-        expectedTitle = arg0 + " - Search";
-        Utils.waitTitle(arg0);
+    @Then("user is able to see the Bing {string} result page")
+    public void userIsAbleToSeeTheBingSearchResultPage(String expectedTitle) {
+        Utils.waitTitle(expectedTitle);
         Utils.verifyTitle(expectedTitle);
     }
 }

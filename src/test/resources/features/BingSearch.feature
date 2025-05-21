@@ -5,6 +5,6 @@ Feature: Bing search page functionality
   and by pressing "Enter" it should show me the search result.
 
   Scenario: Bing search page works as expected
-    Given user is on the Bing search page
+    Given user is on the "Search - Microsoft Bing" page
     When user enters "orange" into Bing search field
-    Then user is able to see the Bing "orange" search result page
+    Then user is able to see the Bing "orange - Search" result page

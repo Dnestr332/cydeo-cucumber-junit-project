@@ -19,11 +19,15 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-junit:7.22.1'
     //(Optional) AssertJ for nicer assertions
     testImplementation 'org.assertj:assertj-core:3.25.3'
-    //JUnit
+    //JUnit 5
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    //JUnit 4
+    testImplementation 'junit:junit:4.13.2'
+    //Allow JUnit 4 tests to run on JUnit 5 engine
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.10.0'
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }

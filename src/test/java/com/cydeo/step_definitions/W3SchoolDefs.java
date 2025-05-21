@@ -15,7 +15,6 @@ public class W3SchoolDefs {
     private String firstHandle;
     private String expectedTitle;
 
-
     @Given("user is on the W{int}School page")
     public void userIsOnTheWSchoolPage(int arg0) {
         Driver.getDriver().get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_link_target");
@@ -33,7 +32,6 @@ public class W3SchoolDefs {
     public void clickOnTheVisitWSchoolsComLink(int arg0) {
         Driver.getDriver().switchTo().frame("iframeResult");
         PAGE.linkVisit.click();
-        Driver.getDriver().switchTo().defaultContent();
     }
 
     @Then("total window handle number is {int}")
