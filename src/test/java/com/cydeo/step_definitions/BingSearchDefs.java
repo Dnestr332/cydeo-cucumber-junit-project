@@ -10,7 +10,6 @@ import org.openqa.selenium.Keys;
 
 public class BingSearchDefs {
     private final BingSearch bingPage = new BingSearch();
-    private String expectedTitle;
 
     @Given("user is on the {string} page")
     public void userIsOnThePage(String expectedTitle) {

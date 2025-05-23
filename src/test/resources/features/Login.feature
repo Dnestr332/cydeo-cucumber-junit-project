@@ -3,7 +3,7 @@ Feature: Login page functionality
 
   Agile story: As a user I should be able to login with correct credentials
   to different accounts. And dashboard should be displayed.
-  Background: Fo all the scenarios on the login page of the library application.
+  Background: For all the scenarios on the login page of the library application.
     Given user is on the login page
 
   #Student scenario

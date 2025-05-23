@@ -26,6 +26,10 @@ public class Utils {
     public static void waitVisible(WebElement target){
         WAIT.until(ExpectedConditions.visibilityOf(target));
     }
+    public static void waitClickable(WebElement target){
+        WAIT.until(ExpectedConditions.elementToBeClickable(target));
+
+    }
 
     //Window handles:
     public static void switchWindowAndVerify(String url, String title){

@@ -15,14 +15,14 @@ public class Driver {
     }
 
     public static WebDriver getDriver() {
-        if (driver == null) {
+        if (driver == null || !isSessionValid()) {
             String browserType = ConfigReader.getProperty("browser");
             switch (browserType) {
                 case "chrome":
                     driver = new ChromeDriver();
                     driver.manage().window().setPosition(new Point(4, 4));
                     driver.manage().window().setSize(new Dimension(1400, 720));
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
                 case "firefox":
                     driver = new FirefoxDriver();
@@ -38,6 +38,16 @@ public class Driver {
         if(driver != null) {
             driver.quit();
             driver = null;
+        }
+    }
+    private static boolean isSessionValid() {
+        try {
+            driver.getTitle(); // Any harmless command
+            return true;
+        } catch (org.openqa.selenium.NoSuchSessionException e) {
+            return false;
+        } catch (Exception e) {
+            return true; // Other errors mean the session is probably still alive
         }
     }
 }
