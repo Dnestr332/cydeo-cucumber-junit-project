@@ -28,19 +28,6 @@ public class Utils {
     }
     public static void waitClickable(WebElement target){
         WAIT.until(ExpectedConditions.elementToBeClickable(target));
-
-    }
-
-    //Window handles:
-    public static void switchWindowAndVerify(String url, String title){
-        for(String handle : Driver.getDriver().getWindowHandles()){
-            Driver.getDriver().switchTo().window(handle);
-            waitTitle(title);
-            if(Driver.getDriver().getCurrentUrl().contains(url)){
-                break;
-            }
-        }
-        titleContains(title);
     }
 
     //Verifications/Assertions:
@@ -71,5 +58,17 @@ public class Utils {
         SOFTLY.assertThat(condition)
                 .as("Check if condition is true: ")
                 .isTrue();
+    }
+
+    //Window handles:
+    public static void switchWindowAndVerify(String url, String title){
+        for(String handle : Driver.getDriver().getWindowHandles()){
+            Driver.getDriver().switchTo().window(handle);
+            waitTitle(title);
+            if(Driver.getDriver().getCurrentUrl().contains(url)){
+                break;
+            }
+        }
+        titleContains(title);
     }
 }

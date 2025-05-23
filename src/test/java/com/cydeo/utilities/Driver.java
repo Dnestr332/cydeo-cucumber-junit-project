@@ -15,7 +15,7 @@ public class Driver {
     }
 
     public static WebDriver getDriver() {
-        if (driver == null || !isSessionValid()) {
+        if (driver == null) {
             String browserType = ConfigReader.getProperty("browser");
             switch (browserType) {
                 case "chrome":
@@ -38,16 +38,6 @@ public class Driver {
         if(driver != null) {
             driver.quit();
             driver = null;
-        }
-    }
-    private static boolean isSessionValid() {
-        try {
-            driver.getTitle(); // Any harmless command
-            return true;
-        } catch (org.openqa.selenium.NoSuchSessionException e) {
-            return false;
-        } catch (Exception e) {
-            return true; // Other errors mean the session is probably still alive
         }
     }
 }
