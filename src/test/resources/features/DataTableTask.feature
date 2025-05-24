@@ -1,3 +1,4 @@
+@DataTask
 Feature:  Data table practice
 
 Scenario: User should be able to see all 12 months in months

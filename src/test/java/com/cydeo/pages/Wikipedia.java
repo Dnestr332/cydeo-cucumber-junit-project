@@ -19,6 +19,6 @@ public class Wikipedia {
     @FindBy(xpath = "//h1[@id='firstHeading']")
     public WebElement mainHeader;
 
-    @FindBy(xpath = "//div[.='Steve Jobs']")
+    @FindBy(xpath = "//div[@class='fn']")
     public WebElement mainImageHeader;
 }
