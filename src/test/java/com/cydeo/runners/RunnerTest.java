@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber-reports.html"},
         features = "src/test/resources/features",
         glue = "com.cydeo.step_definitions",
-        tags = "@ScenarioOutline",
+        tags = "@CydeoTable and not @CydeoOutline",
         dryRun = false,
         publish = false
 )

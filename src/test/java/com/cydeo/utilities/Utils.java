@@ -42,11 +42,18 @@ public class Utils {
                 .as("Verify page title")
                 .isEqualTo(expectedTitle);
     }
+
     public static void titleContains(String expectedTitle){
         final SoftAssertions SOFTLY = new SoftAssertions();
         SOFTLY.assertThat(Driver.getDriver().getTitle())
                 .as("Check if title contains: %s", expectedTitle)
                 .contains(expectedTitle);
+    }
+    public static void urlContains(String keyword){
+        final SoftAssertions SOFTLY = new SoftAssertions();
+        SOFTLY.assertThat(Driver.getDriver().getCurrentUrl())
+                .as("Check if url contains: %s", keyword)
+                .contains(keyword);
     }
     public static void textContains(WebElement target, String expectedText){
         final SoftAssertions SOFTLY = new SoftAssertions();
