@@ -5,6 +5,7 @@ import com.cydeo.utilities.Driver;
 import com.cydeo.utilities.Utils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import net.datafaker.providers.entertainment.NewGirl;
 
 import java.util.List;
 

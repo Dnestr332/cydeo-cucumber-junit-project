@@ -90,6 +90,7 @@ public class CydeoTablesDefs {
     @Then("user should see new order with {string} in the table on “View all orders” page")
     public void userShouldSeeNewOrderWithInTheTableOnViewAllOrdersPage(String customer) {
         keyWord = "orders";
+        PAGE.orderButton.click();
         Utils.urlContains(keyWord);
         List<String> orders = Utils.getStringRows(PAGE.orderRows);
         Utils.isTrue(orders.contains(customer));

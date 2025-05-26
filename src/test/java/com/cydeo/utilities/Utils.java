@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
+
+    // Shared SoftAssertions per thread
+    private static final ThreadLocal<SoftAssertions> softly = ThreadLocal.withInitial(SoftAssertions::new);
     //Helper methods
     private static SoftAssertions getSoftly(){
         return new SoftAssertions();
@@ -59,8 +62,13 @@ public class Utils {
                 .as("Check if element text contains: %s")
                 .contains(expectedText);
     }
-    public static void assertAll(){
-        getSoftly().assertAll();
+    public static void assertAll() {
+        try {
+            getSoftly().assertAll();
+        } finally {
+            // Clean up to avoid memory leaks between scenarios
+            softly.remove();
+        }
     }
     public static void isDisplayed(WebElement target){
         getSoftly().assertThat(target.isDisplayed())

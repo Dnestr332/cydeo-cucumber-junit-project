@@ -13,7 +13,7 @@ public class Hooks {
 
     @Before
     public void setupMethod() {
-        Driver.getDriver();
+        Driver.getDriver();//Lazy setup
     }
     @Before("@Login")
     public void loginDefaultUser() {
