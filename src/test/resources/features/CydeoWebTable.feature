@@ -3,14 +3,11 @@ Feature: Cydeo WebTable page functionality.
   Agile story: as a user I should be able to enter valid credentials
   on the login page and should be able to access the main page after.
 
-  Background: for all the tests
-    Given user is on the page with "https://web-table-2.cydeo.com/login"
-    When user enters "Test" and "Tester"
-    And user clicks login button
-
+  @Login
   Scenario: Login page functionality
     Then  user should see "order" in page URL
 
+  @Login
   Scenario: Verify products
     When user is on the Order page
     Then user sees below options under “product” dropdown
@@ -18,6 +15,7 @@ Feature: Cydeo WebTable page functionality.
       | FamilyBea  |
       | Screenable |
 
+  @Login
   Scenario: Verify cards
     When user is on the Order page
     Then user sees below radio buttons enabled for
@@ -25,24 +23,23 @@ Feature: Cydeo WebTable page functionality.
       | MasterCard       |
       | American Express |
 
-  Scenario: Order placement
-    When user is on the “Order” page
-    Then user enters appropriate test data
-      | Product                                     |  |
-      | Quantity                                    | 5 |
-      | Customer name                               |  John Doe|
-      | Street                                      |  555 Main st|
-      | City                                        |  Brooklyn|
-      | State                                       |  NY|
-      | Zip                                         |  11258|
-      | Card type: Visa/MasterCard/American Express |  |
-      | Card No                                     |  |
-      | Expire date                                 |  |
+  @OrderOutline @Login
+  Scenario Outline: Order placement
+    When user is on the Order page
+    Then user enters product info as "<product>" and "<quantity>"
+    And user enters "<name>", "<street>", "<city>", "<state>", "<zip>"
+    And user chooses "<card type>", enters "<card No>", "<expires>"
     And user clicks to “Process Order”
-    Then user should see new order in the table on “View all orders” page
+    Then user should see new order with "<name>" in the table on “View all orders” page
+
+    Examples: All the values and fields
+      | product    | quantity | name           | street           | city        | state | zip   | card type        | card No      | expires |
+      | MoneyCog   | 1        | Alexandra Gray | 7, Miller Street | Newcastle   | AZ    | 21444 | Visa             | 321456789012 | 02/24   |
+      | Familybea  | 2        | Bart Fisher    | 12, Cherry Ave   | Los Angeles | CA    | 22043 | MasterCard       | 980077987700 | 03/27   |
+      | Screenable | 3        | Ned Stark      | 35, Stone st.    | Brooklyn    | NY    | 11237 | American Express | 774555444555 | 05/30   |
 
 
-  @CydeoOutline
+  @LoginOutline
   Scenario Outline: For all the scenarios
     Given user is on the page with "<url>"
     When user enters "<login>" and "<password>"

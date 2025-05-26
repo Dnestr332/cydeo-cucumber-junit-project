@@ -94,4 +94,13 @@ public class Utils {
         }
         return result;
     }
+
+    //Web Tables
+    public static List<String> getStringRows(List<WebElement> target){
+        List<String> result = new ArrayList<>();
+        for(WebElement row : target){
+            result.add(row.getText());
+        }
+        return result;
+    }
 }

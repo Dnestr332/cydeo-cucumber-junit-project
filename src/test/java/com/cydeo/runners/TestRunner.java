@@ -9,9 +9,9 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "html:target/cucumber-reports.html"},
         features = "src/test/resources/features",
         glue = "com.cydeo.step_definitions",
-        tags = "@Wiki",
+        tags = "@CydeoTable",
         dryRun = false,
         publish = false
 )
-public class RunnerTest {
+public class TestRunner {
 }

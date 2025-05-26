@@ -1,5 +1,6 @@
 package com.cydeo.step_definitions;
 
+import com.cydeo.pages.CydeoTables;
 import com.cydeo.utilities.Driver;
 import com.cydeo.utilities.Utils;
 import io.cucumber.java.After;
@@ -13,6 +14,12 @@ public class Hooks {
     @Before
     public void setupMethod() {
         Driver.getDriver();
+    }
+    @Before("@Login")
+    public void loginDefaultUser() {
+        Driver.getDriver().get("https://web-table-2.cydeo.com/login");
+        CydeoTables loginPage = new CydeoTables();
+        loginPage.login("Test", "Tester");
     }
 
     @After
