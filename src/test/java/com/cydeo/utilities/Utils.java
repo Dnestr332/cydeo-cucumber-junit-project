@@ -2,6 +2,7 @@ package com.cydeo.utilities;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.json.StaticInitializerCoercer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,8 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
-    private static final SoftAssertions SOFTLY = new SoftAssertions();
-    private static final WebDriverWait WAIT = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+    //Helper methods
+    private static SoftAssertions getSoftly(){
+        return new SoftAssertions();
+    }
+    private static WebDriverWait getWait(){
+        return new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+    }
 
     //Explicit and Hard waits:
     public static void sleep(int sec){
@@ -23,57 +29,46 @@ public class Utils {
         }
     }
     public static void waitTitle(String partialTitle){
-        final WebDriverWait WAIT = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        WAIT.until(ExpectedConditions.titleContains(partialTitle));
+        getWait().until(ExpectedConditions.titleContains(partialTitle));
     }
     public static void waitVisible(WebElement target){
-        final WebDriverWait WAIT = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        WAIT.until(ExpectedConditions.visibilityOf(target));
+        getWait().until(ExpectedConditions.visibilityOf(target));
     }
     public static void waitClickable(WebElement target){
-        final WebDriverWait WAIT = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        WAIT.until(ExpectedConditions.elementToBeClickable(target));
+        getWait().until(ExpectedConditions.elementToBeClickable(target));
     }
 
     //Verifications/Assertions:
     public static void verifyTitle(String expectedTitle) {
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertThat(Driver.getDriver().getTitle())
+        getSoftly().assertThat(Driver.getDriver().getTitle())
                 .as("Verify page title")
                 .isEqualTo(expectedTitle);
     }
-
     public static void titleContains(String expectedTitle){
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertThat(Driver.getDriver().getTitle())
+        getSoftly().assertThat(Driver.getDriver().getTitle())
                 .as("Check if title contains: %s", expectedTitle)
                 .contains(expectedTitle);
     }
     public static void urlContains(String keyword){
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertThat(Driver.getDriver().getCurrentUrl())
+        getSoftly().assertThat(Driver.getDriver().getCurrentUrl())
                 .as("Check if url contains: %s", keyword)
                 .contains(keyword);
     }
     public static void textContains(WebElement target, String expectedText){
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertThat(target.getText())
+        getSoftly().assertThat(target.getText())
                 .as("Check if element text contains: %s")
                 .contains(expectedText);
     }
     public static void assertAll(){
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertAll();
+        getSoftly().assertAll();
     }
     public static void isDisplayed(WebElement target){
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertThat(target.isDisplayed())
+        getSoftly().assertThat(target.isDisplayed())
                 .as("Check if the element is displayed: %s")
                 .isTrue();
     }
     public static void isTrue(Boolean condition){
-        final SoftAssertions SOFTLY = new SoftAssertions();
-        SOFTLY.assertThat(condition)
+        getSoftly().assertThat(condition)
                 .as("Check if condition is true: ")
                 .isTrue();
     }

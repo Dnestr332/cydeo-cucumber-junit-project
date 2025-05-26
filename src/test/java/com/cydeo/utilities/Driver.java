@@ -22,7 +22,7 @@ public class Driver {
                     driver = new ChromeDriver();
                     driver.manage().window().setPosition(new Point(4, 4));
                     driver.manage().window().setSize(new Dimension(1400, 720));
-//                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
                     break;
                 case "firefox":
                     driver = new FirefoxDriver();
