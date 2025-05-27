@@ -12,24 +12,39 @@ repositories {
 dependencies {
     //Selenium
     implementation 'org.seleniumhq.selenium:selenium-java:4.32.0'
-    //Data Faker
+
+    //Data faker
     implementation 'net.datafaker:datafaker:2.4.3'
-    //Cucumber
+
+    // Cucumber
     testImplementation 'io.cucumber:cucumber-java:7.22.1'
     testImplementation 'io.cucumber:cucumber-junit:7.22.1'
-    //(Optional) AssertJ for nicer assertions
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.22.1'
+
+    // Assertions
     testImplementation 'org.assertj:assertj-core:3.25.3'
-    //JUnit 5
+
+    // JUnit 5
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    //JUnit 4
+    // JUnit Platform Suite API (for @Suite, @SelectClasspathResource, etc.)
+    testImplementation 'org.junit.platform:junit-platform-suite:1.10.0'
+
+    // JUnit 4
     testImplementation 'junit:junit:4.13.2'
-    //Allow JUnit 4 tests to run on JUnit 5 engine
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.10.0'
 }
 
 test {
     useJUnitPlatform()
+    // Run test classes in parallel (class-level parallelism)
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+
+    // Optional: log parallel test execution
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
 }
 
 
