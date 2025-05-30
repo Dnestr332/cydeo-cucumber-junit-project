@@ -44,7 +44,7 @@ public class CydeoTablesDefs {
         keyWord = "create-order";
         Utils.urlContains(keyWord);
     }
-    @Then("user sees below options under “product” dropdown")
+    @Then("user sees below options under product dropdown")
     public void userSeesBelowOptionsUnderProductDropdown(List<String> expectedProducts) {
         List<String> actualProducts = Utils.getStringList(PAGE.productDropDown);
         Utils.isTrue(actualProducts.equals(expectedProducts));
@@ -82,12 +82,12 @@ public class CydeoTablesDefs {
         PAGE.expireDate.sendKeys(expires);
     }
 
-    @And("user clicks to “Process Order”")
+    @And("user clicks to Process Order")
     public void userClicksToProcessOrder() {
         PAGE.processOrderButton.click();
     }
 
-    @Then("user should see new order with {string} in the table on “View all orders” page")
+    @Then("user should see new order with {string} in the table on View all orders page")
     public void userShouldSeeNewOrderWithInTheTableOnViewAllOrdersPage(String customer) {
         keyWord = "orders";
         PAGE.orderButton.click();

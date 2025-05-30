@@ -10,7 +10,7 @@ Feature: Cydeo WebTable page functionality.
   @Login
   Scenario: Verify products
     When user is on the Order page
-    Then user sees below options under “product” dropdown
+    Then user sees below options under product dropdown
       | MoneyCog   |
       | FamilyBea  |
       | Screenable |
@@ -29,8 +29,8 @@ Feature: Cydeo WebTable page functionality.
     Then user enters product info as "<product>" and "<quantity>"
     And user enters "<name>", "<street>", "<city>", "<state>", "<zip>"
     And user chooses "<card type>", enters "<card No>", "<expires>"
-    And user clicks to “Process Order”
-    Then user should see new order with "<name>" in the table on “View all orders” page
+    And user clicks to Process Order
+    Then user should see new order with "<name>" in the table on View all orders page
 
     Examples: All the values and fields
       | product    | quantity | name           | street           | city        | state | zip   | card type        | card No      | expires |

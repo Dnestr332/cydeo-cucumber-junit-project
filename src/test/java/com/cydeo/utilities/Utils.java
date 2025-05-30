@@ -2,7 +2,6 @@ package com.cydeo.utilities;
 
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.json.StaticInitializerCoercer;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
